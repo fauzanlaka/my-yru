@@ -9,15 +9,15 @@
                 <p class="login-box-msg">Sign in to start your session</p>
                 <form @submit.prevent="submitLogin()">
                     <div class="input-group mb-2">
-                        <input type="text" v-model="username" class="form-control" :class="{'is-invalid': serverErrors.username}" placeholder="Email">
+                        <input type="text" v-model="username" class="form-control" :class="{'is-invalid': serverErrors.username || serverErrors.email}" placeholder="Email">
                         <div class="input-group-append">
                             <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
                             </div>
                         </div>
                     </div>
-                    <div class="text-danger mb-2" v-if="serverErrors.username">
-                        {{serverErrors.username[0]}}
+                    <div class="text-danger mb-2" v-if="serverErrors.username || serverErrors.email">
+                        {{serverErrors.username[0] || serverErrors.email[0]}}
                     </div>
                     <div class="input-group mb-2">
                         <input type="password" v-model="password" :class="{'is-invalid': serverErrors.password}" class="form-control" placeholder="Password">
