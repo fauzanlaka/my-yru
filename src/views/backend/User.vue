@@ -62,7 +62,7 @@
                                           <button @click="openModal(true, item)" class="btn btn-warning text-white"><i class="fa fa-edit"></i> แก้ไข</button>
                                         </td>
                                         <td class="text-center text-white">
-                                          <button @click="openModal(true, '')" class="btn btn-danger text-white"><i class="fa fa-trash"></i> ลบ</button>
+                                          <button @click="deleteConfirming(item.id)" class="btn btn-danger text-white"><i class="fa fa-trash"></i> ลบ</button>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -87,7 +87,7 @@
       </div>
     </section>
 
-    <!-- modal form -->
+    <!-- create/update form -->
     <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg modal-lg modal-dialog-centered">
         <div class="modal-content">
@@ -172,7 +172,44 @@
         </div>
       </div>
     </div>
-    <!-- !.modal form -->
+    <!-- !.create/update form -->
+
+    <!-- confirming delete form -->
+    <div class="modal fade" id="deleteConfirming" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">
+              <span>ลบผู้ใช้งาน</span>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form @submit.prevent="deleteUser()">
+              <div class="row mt-3">
+                <div class="col-sm-12">
+                  <!-- text input -->
+                  <div class="form-group">
+                    <label>รหัสผ่าน</label>
+                    <input type="text" class="form-control" :class="{'is-invalid': serverErrors.confirming_password}" v-model="confirming_password" placeholder="ชื่อ">
+                    <div class="text-danger" v-if="serverErrors.confirming_password">
+                      {{serverErrors.confirming_password[0]}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>  
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+            <button type="button" @click.prevent="deleteUser()" :disabled="disabled" class="btn btn-danger">ลบ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- !.confirming delete form -->
 
 </template>
 
@@ -203,7 +240,10 @@
         password: '',
         avatar: null,
         disabled: false, 
-        serverErrors: ''
+        serverErrors: '',
+        //delete confirming password
+        confirming_password: '',
+        user_id: '',
       }
     },
     setup(){
@@ -223,6 +263,45 @@
       }  
     },
     methods:{
+      deleteUser(){
+        this.disabled = true
+        this.$Progress.start()
+        http.post('userDelete', {
+          confirming_password: this.confirming_password,
+          user_id: this.user_id
+        })
+          .then(response => {
+            console.log(response.data.message)
+            this.toast.success("ลบข้อมูลสำเร็จ", {
+              position: "top-right",
+              timeout: 2000,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 0.6,
+              showCloseButtonOnHover: false,
+              hideProgressBar: false,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            });
+            this.disabled = false
+            this.$Progress.finish()
+            this.serverErrors = ""
+            this.retreiveUser()
+            $("#deleteConfirming").modal("hide")
+          })
+          .catch(error => {
+            this.$Progress.fail()
+            this.disabled = false
+            this.serverErrors = error.response.data.errors
+          })
+      },
+      deleteConfirming(id){
+        $("#deleteConfirming").modal("show")
+        this.user_id = id
+      },
       updateUser(){
         let formData = new FormData()
         formData.append('name', this.name) 
