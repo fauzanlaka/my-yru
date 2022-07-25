@@ -22,14 +22,14 @@ const mutations = {
     signIn(state, passkey){
         state.authStatus = passkey
     },
+    signOut(state){
+        localStorage.removeItem('auth')
+        state.authStatus = null
+    },
     destroyLogedIn(){
         localStorage.removeItem('auth')
         state.authStatus = null
     },
-    signOut(state){
-        localStorage.removeItem('auth')
-        state.authStatus = null
-    }
 }
 
 const actions = {

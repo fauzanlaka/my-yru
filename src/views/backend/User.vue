@@ -1,4 +1,5 @@
 <template>
+    
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -12,8 +13,9 @@
             </ol>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
+    
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -22,127 +24,288 @@
               <div class="card-header">
                 <h3 class="card-title">รายการผู้ใช้งานทั้งหมด</h3>
               </div>
-              <!-- /.card-header -->
               <div class="card-body">
-                <div class="dataTables_wrapper dt-bootstrap4">
+                <div>
                     <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <div id="example1_filter" class="dataTables_filter">
-                                <input type="text" class="form-control" placeholder="" aria-controls="example1">
-                            </div>
+                        <div class="col-6 col-sm-6 col-md-6">
+                          <input type="text" v-model="query" class="form-control" placeholder="ค้นหา" aria-controls="example1">
+                        </div>
+                        <div class="col-6 col-sm-6 col-md-6">
+                            <button @click="openModal(false)" class="btn btn-primary float-right"><i class="fa fa-plus-circle"></i> เพิ่ม</button>
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-sm-12">
-                            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <table class="table table-bordered table-striped dataTable dtr-inline" style="overflow-y: scrol !important">
                                 <thead>
                                     <tr role="row">
-                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Rendering engine</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Browser</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Platform(s)</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="">Engine version</th>
-                                        <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="">CSS grade</th>
+                                        <th class="text-center">ID</th>
+                                        <th class="text-center">ชื่อ นามสกุล</th>
+                                        <th class="text-center">อีเมล</th>
+                                        <th class="text-center">เบอร์โทร</th>
+                                        <th class="text-center">แก้ไข้</th>
+                                        <th class="text-center">ลบ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="odd">
-                                        <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                        <td>Firefox 1.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td style="">1.7</td>
-                                        <td style="">A</td>
-                                    </tr><tr class="even">
-                                        <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                        <td>Firefox 1.5</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td style="">1.8</td>
-                                        <td style="">A</td>
-                                    </tr><tr class="odd">
-                                        <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                        <td>Firefox 2.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td style="">1.8</td>
-                                        <td style="">A</td>
-                                    </tr><tr class="even">
-                                        <td class="dtr-control sorting_1" tabindex="0">Gecko</td>
-                                        <td>Firefox 3.0</td>
-                                        <td>Win 2k+ / OSX.3+</td>
-                                        <td style="">1.9</td>
-                                        <td style="">A</td>
-                                    </tr><tr class="odd">
-                                        <td class="sorting_1 dtr-control">Gecko</td>
-                                        <td>Camino 1.0</td>
-                                        <td>OSX.2+</td>
-                                        <td style="">1.8</td>
-                                        <td style="">A</td>
-                                    </tr><tr class="even">
-                                        <td class="sorting_1 dtr-control">Gecko</td>
-                                        <td>Camino 1.5</td>
-                                        <td>OSX.3+</td>
-                                        <td style="">1.8</td>
-                                        <td style="">A</td>
-                                    </tr><tr class="odd">
-                                        <td class="sorting_1 dtr-control">Gecko</td>
-                                        <td>Netscape 7.2</td>
-                                        <td>Win 95+ / Mac OS 8.6-9.2</td>
-                                        <td style="">1.7</td>
-                                        <td style="">A</td>
-                                    </tr><tr class="even">
-                                        <td class="sorting_1 dtr-control">Gecko</td>
-                                        <td>Netscape Browser 8</td>
-                                        <td>Win 98SE+</td>
-                                        <td style="">1.7</td>
-                                        <td style="">A</td>
-                                    </tr><tr class="odd">
-                                        <td class="sorting_1 dtr-control">Gecko</td>
-                                        <td>Netscape Navigator 9</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td style="">1.8</td>
-                                        <td style="">A</td>
-                                    </tr><tr class="even">
-                                        <td class="sorting_1 dtr-control">Gecko</td>
-                                        <td>Mozilla 1.0</td>
-                                        <td>Win 95+ / OSX.1+</td>
-                                        <td style="">1</td>
-                                        <td style="">A</td>
+                                    <tr class="odd" v-for="(item, index) in users" :key="index">
+                                        <td class="dtr-control sorting_1 text-center" tabindex="0">
+                                          <!-- {{index+1}} -->
+                                          {{item.id}}
+                                        </td>
+                                        <td>
+                                          {{item.name}} {{item.lastname}}
+                                        </td>
+                                        <td>{{item.email}}</td>
+                                        <td style="">{{item.telephone}}</td>
+                                        <td class="text-center text-white">
+                                          <button @click="openModal(true, item)" class="btn btn-warning text-white"><i class="fa fa-edit"></i> แก้ไข</button>
+                                        </td>
+                                        <td class="text-center text-white">
+                                          <button @click="openModal(true, '')" class="btn btn-danger text-white"><i class="fa fa-trash"></i> ลบ</button>
+                                        </td>
                                     </tr>
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th rowspan="1" colspan="1">Rendering engine</th>
-                                        <th rowspan="1" colspan="1">Browser</th>
-                                        <th rowspan="1" colspan="1">Platform(s)</th>
-                                        <th rowspan="1" colspan="1" style="">Engine version</th>
-                                        <th rowspan="1" colspan="1" style="">CSS grade</th>
-                                    </tr>
-                                </tfoot>
                             </table>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12 col-md-5">
-                            <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
-                        </div>
-                        <div class="col-sm-12 col-md-7">
-                            <span class="float-right">fdsf</span>
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                            <pagination
+                                v-if="pagination.last_page > 1"
+                                :pagination="pagination"
+                                :offset="5"
+                                @paginate="query === '' ? retreiveUser() : searchUser()"
+                            ></pagination>
                         </div>
                     </div>
                 </div>
               </div>
-              <!-- /.card-body -->
             </div>
-            <!-- /.card -->
           </div>
-          <!-- /.col -->
         </div>
-        <!-- /.row -->
       </div>
-      <!-- /.container-fluid -->
     </section>
+
+    <!-- modal form -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">
+              <span v-if="!isEditMode">เพิ่ม</span>
+              <span v-if="isEditMode">แก้ไข</span>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form @submit.prevent="updateUser()">
+              <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                  <!-- <img src="/assets/img/AdminLTELogo.png" alt="" srcset=""> -->
+                  <img v-if="imgUrl" class="img-thumbnail" width="150" height="200" :src="imgUrl" alt="User profile picture">
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-sm-6">
+                  <!-- text input -->
+                  <div class="form-group">
+                    <label>ชื่อ</label>
+                    <input type="text" class="form-control" v-model="name" placeholder="ชื่อ">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>นามสกุล</label>
+                    <input type="text" class="form-control" v-model="lastname" placeholder="นามสกุล" >
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <!-- textarea -->
+                  <div class="form-group">
+                    <label>อีเมล</label>
+                    <input type="text" class="form-control" v-model="email" placeholder="อีเมล">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>เบอร์โทรศัพท์</label>
+                    <input type="text" class="form-control" v-model="telephone" placeholder="เบอร์โทรศัพท์" >
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <!-- textarea -->
+                  <div class="form-group">
+                    <label>username</label>
+                    <input type="text" class="form-control" v-model="username" placeholder="username">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>password</label>
+                    <input type="password" class="form-control" v-model="password" placeholder="password" >
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <!-- textarea -->
+                  <div class="form-group">
+                    <label>รูปโปรไฟล์</label>
+                    <input type="file" class="form-control" @change="onFileChange">
+                  </div>
+                </div>
+              </div>
+            </form>  
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" @click.prevent="updateUser()" :disabled="disabled" class="btn btn-primary" v-if="isEditMode">แก้ไข</button>
+            <button type="button" class="btn btn-primary" v-if="!isEditMode">บันทึก</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- !.modal form -->
+
 </template>
 
 <script>
-export default {};
+  import http from '@/services/auth';
+  import $ from 'jquery'
+  import { useToast } from "vue-toastification";
+  export default {
+    mounted(){
+      this.retreiveUser()
+    },
+    data(){
+      return{
+        users: [],
+        pagination:{
+          current_page: 1
+        },
+        query: '',
+        isEditMode: false,
+        //form data
+        id: '',
+        imgUrl: '',
+        name: '',
+        lastname: '',
+        email: '',
+        telephone: '',
+        username: '',
+        password: '',
+        avatar: null,
+        disabled: false, 
+        serverErrors: ''
+      }
+    },
+    setup(){
+      // Get toast interface
+      const toast = useToast();
+      // Make it available inside methods
+      return { toast }
+    },
+    watch:{
+      query: function(){
+        if(this.query == "")
+        {
+          this.retreiveUser()
+        }else{
+          this.searchUser()
+        }
+      }  
+    },
+    methods:{
+      updateUser(){
+        let formData = new FormData()
+        formData.append('name', this.name) 
+        formData.append('lastname', this.lastname) 
+        formData.append('email', this.email) 
+        formData.append('telephone', this.telephone) 
+        formData.append('username', this.username) 
+        formData.append('password', this.password) 
+        formData.append('avatar', this.avatar) 
+        formData.append('_method', 'PATCH')
+        this.disabled = true
+        http.post(`users/${this.id}`, formData)
+          .then(() => {
+            this.toast.success("แก้ไขข้อมูลสำเร็จ", {
+              position: "top-right",
+              timeout: 2000,
+              closeOnClick: true,
+              pauseOnFocusLoss: true,
+              pauseOnHover: true,
+              draggable: true,
+              draggablePercent: 0.6,
+              showCloseButtonOnHover: false,
+              hideProgressBar: false,
+              closeButton: "button",
+              icon: true,
+              rtl: false
+            });
+            this.disabled = false
+            this.serverErrors = ''
+            this.retreiveUser()
+          })
+          .catch(error => {
+            this.serverErrors = error.response.data.errors
+            this.disabled = false
+          })
+        },
+      openModal(id, item){
+        $("#staticBackdrop").modal("show")
+        this.id = item.id
+        this.name = item.name
+        this.lastname = item.lastname
+        this.email = item.email
+        this.telephone = item.telephone
+        this.username = item.username
+        this.imgUrl = item.avatar
+        // this.password = item.password
+        this.isEditMode = id
+      },
+      onFileChange(e){
+          const file = e.target.files[0]
+          this.avatar = e.target.files[0]
+          this.imgUrl = URL.createObjectURL(file)
+          // this.eimgUrl = URL.createObjectURL(file)
+      },
+      searchUser(){
+        http.get(`userSearch?q=${this.query}&&page=1`)
+          .then(result => {
+            this.users = result.data.data.data
+            this.pagination = result.data.data
+          })
+          .catch(err => {
+            if(err.response.status == 401){
+              this.$store.dispatch('auth/destroyLogedIn')
+            }
+          })
+      },
+      retreiveUser(){
+        this.$Progress.start()
+        http.get(`users?page=${this.pagination.current_page}`)
+          .then(result => {
+            // console.log(result.data)  
+            this.users = result.data.data.data
+            this.pagination = result.data.data
+            this.$Progress.finish()
+          }).catch((err) => {
+            if(err.response.status == 401){
+              this.$store.dispatch('auth/destroyLogedIn')
+            }
+            this.$Progress.fail()
+          });  
+      }
+    }
+  };
 </script>
 
 <style lang="scss" scoped>

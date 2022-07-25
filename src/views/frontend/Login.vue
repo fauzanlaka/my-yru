@@ -82,9 +82,16 @@
                 serverErrors: '',
             }
         },
+        // setup() {
+        //     // Get toast interface
+        //     const toast = useToast();
+        //     // Make it available inside methods
+        //     return { toast }
+        // },
         methods:{
             login(){
                 this.disabled = true
+                // this.$Progress.start()
                 this.$store.dispatch('auth/signIn', {
                     username: this.username,
                     password: this.password,
@@ -93,13 +100,30 @@
                         this.disabled = false
                         this.serverErrors = ''
                         window.location.href = 'dashboard'
+                        // this.toast.success("I'm a toast!", {
+                        //     position: "top-right",
+                        //     timeout: 5000,
+                        //     closeOnClick: true,
+                        //     pauseOnFocusLoss: true,
+                        //     pauseOnHover: true,
+                        //     draggable: true,
+                        //     draggablePercent: 0.6,
+                        //     showCloseButtonOnHover: false,
+                        //     hideProgressBar: false,
+                        //     closeButton: "button",
+                        //     icon: true,
+                        //     rtl: false
+                        // });
+                        this.$Progress.finish()
                     }).catch(error => {
                         this.disabled = false
                         this.serverErrors = error.response.data.errors
+                        this.$Progress.fail()
                     });
             },
             submitLogin(){
                 this.disabled = true
+                this.$Progress.start()
                 http.get(process.env.VUE_APP_RUL_COOKIE+'sanctum/csrf-cookie').then(() => {
                     // console.log(response.data)
                     this.login()

@@ -11,7 +11,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import {faLock, faEnvelope} from '@fortawesome/free-solid-svg-icons';
 import {faFacebook, faGooglePlus} from '@fortawesome/free-brands-svg-icons';
-
+import VueProgressBar from "@aacassandra/vue3-progressbar";
 
 //import adminlte scripts
 import "../node_modules/admin-lte/dist/js/adminlte.min.js"
@@ -59,11 +59,24 @@ dom.watch()
 const app = createApp(App);
 
 const options = {
-    // You can set your default options here
+    color: "#234BEF",
+    failedColor: "red",
+    thickness: "5px",
+    transition: {
+        speed: "0.2s",
+        opacity: "0.6s",
+        termination: 300,
+    },
+    autoRevert: true,
+    location: "top",
+    inverse: false,
 };
 
 app.use(Toast, options);
 app.use(router)
 app.use(store)
 app.component("font-awesome-icon", FontAwesomeIcon)
+app.use(VueProgressBar, options)
+//------------------------------------pagination------------------------------------------
+app.component('pagination', require('@/views/backend/partial/PaginationComponent.vue').default);
 app.mount('#app')

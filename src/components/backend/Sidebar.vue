@@ -65,13 +65,15 @@
 export default {
   methods:{
     logout(){
+      this.$Progress.start()
       this.$store.dispatch('auth/signOut')
         .then(() => {
           // console.log(response.data)
           window.location.href = '/'
+          this.$Progress.finish()
         })
         .catch(() => {
-          
+          this.$Progress.fail()
         });
     }
   }
