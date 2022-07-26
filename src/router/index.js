@@ -90,7 +90,40 @@ const routes = [
       title: 'Dashboard',
       description: 'Dashboard',
     }
+  },
+  {
+    path: '/students',
+    component: BackendLayout,
+    children: [
+      {
+        path: '',
+        name: 'Students',
+        component: require('@/views/backend/Student.vue').default,
+        beforeEnter: authGuard
+      }
+    ],
+    meta:{
+      title: 'Dashboard',
+      description: 'Dashboard',
+    }
+  },
+  {
+    path: '/equipment',
+    component: BackendLayout,
+    children: [
+      {
+        path: '',
+        name: 'Equipment',
+        component: require('@/views/backend/Equipment.vue').default,
+        beforeEnter: authGuard
+      }
+    ],
+    meta:{
+      title: 'Dashboard',
+      description: 'Dashboard',
+    }
   }
+
 ]
 
 const router = createRouter({

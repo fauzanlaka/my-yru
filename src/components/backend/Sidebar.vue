@@ -32,19 +32,35 @@
           <li class="nav-item">
             <router-link :to="{name: 'Users'}" class="nav-link">
               <a class="nav-link text-white">
-                <i class="nav-icon fas fa-users"></i>
+                <i class="nav-icon fas fa-user"></i>
                 <p>ผู้ใช้งาน</p>
               </a>
             </router-link>
           </li>
           <li class="nav-item">
+            <router-link :to="{name: 'Students'}" class="nav-link">
+              <a class="nav-link text-white">
+                <i class="nav-icon fas fa-users"></i>
+                <p>นักศึกษา</p>
+              </a>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link :to="{name: 'Equipment'}" class="nav-link">
+              <a class="nav-link text-white">
+                <i class="nav-icon fas fa-list"></i>
+                <p>อุปกรณ์</p>
+              </a>
+            </router-link>
+          </li>
+          <!-- <li class="nav-item">
             <router-link :to="{name: 'Roles'}" class="nav-link">
               <a class="nav-link text-white">
                 <i class="nav-icon fas fa-ruler"></i>
                 <p>สิทธิ์</p>
               </a>
             </router-link>
-          </li>
+          </li> -->
           <li class="nav-item" @click="logout()" style="cursor: pointer;">
             <a class="nav-link bg-danger">
               <i class="nav-icon fas fa-sign-out-alt"></i>
