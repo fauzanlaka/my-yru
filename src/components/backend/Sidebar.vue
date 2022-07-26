@@ -53,6 +53,14 @@
               </a>
             </router-link>
           </li>
+          <li class="nav-item">
+            <router-link :to="{name: 'Borrow'}" class="nav-link">
+              <a class="nav-link text-white">
+                <i class="nav-icon fas fa-list-alt"></i>
+                <p>ยืมอุปกรณ์</p>
+              </a>
+            </router-link>
+          </li>
           <!-- <li class="nav-item">
             <router-link :to="{name: 'Roles'}" class="nav-link">
               <a class="nav-link text-white">

@@ -122,6 +122,22 @@ const routes = [
       title: 'Dashboard',
       description: 'Dashboard',
     }
+  },
+  {
+    path: '/borrow',
+    component: BackendLayout,
+    children: [
+      {
+        path: '',
+        name: 'Borrow',
+        component: require('@/views/backend/Borrow.vue').default,
+        beforeEnter: authGuard
+      }
+    ],
+    meta:{
+      title: 'Dashboard',
+      description: 'Dashboard',
+    }
   }
 
 ]
